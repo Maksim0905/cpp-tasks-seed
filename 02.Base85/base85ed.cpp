@@ -38,13 +38,13 @@ std::vector<uint8_t> base85::encode(const std::vector<uint8_t> &bytes)
                          (static_cast<uint32_t>(bytes[pos + 2]) << 8) |
                          static_cast<uint32_t>(bytes[pos + 3]);
 
-        char block[5] = {};
+        std::array<uint8_t, 5> block{};
         for (int i = 4; i >= 0; --i)
         {
-            block[i] = kAlphabet[value % 85];
+            block[i] = static_cast<uint8_t>(kAlphabet[value % 85]);
             value /= 85;
         }
-        out.insert(out.end(), block, block + 5);
+        out.insert(out.end(), block.begin(), block.end());
         pos += 4;
     }
 
@@ -57,13 +57,13 @@ std::vector<uint8_t> base85::encode(const std::vector<uint8_t> &bytes)
             value |= static_cast<uint32_t>(bytes[pos + i]) << (24 - 8 * i);
         }
 
-        char block[5] = {};
+        std::array<uint8_t, 5> block{};
         for (int i = 4; i >= 0; --i)
         {
-            block[i] = kAlphabet[value % 85];
+            block[i] = static_cast<uint8_t>(kAlphabet[value % 85]);
             value /= 85;
         }
-        out.insert(out.end(), block, block + rem + 1);
+        out.insert(out.end(), block.begin(), block.begin() + rem + 1);
     }
 
     return out;
