@@ -1,5 +1,6 @@
 #include "base85ed.h"
 
+#include <algorithm>
 #include <array>
 #include <stdexcept>
 
@@ -37,7 +38,7 @@ std::vector<uint8_t> base85::encode(const std::vector<uint8_t> &bytes)
                          (static_cast<uint32_t>(bytes[pos + 2]) << 8) |
                          static_cast<uint32_t>(bytes[pos + 3]);
 
-        char block[5];
+        char block[5] = {};
         for (int i = 4; i >= 0; --i)
         {
             block[i] = kAlphabet[value % 85];
@@ -56,7 +57,7 @@ std::vector<uint8_t> base85::encode(const std::vector<uint8_t> &bytes)
             value |= static_cast<uint32_t>(bytes[pos + i]) << (24 - 8 * i);
         }
 
-        char block[5];
+        char block[5] = {};
         for (int i = 4; i >= 0; --i)
         {
             block[i] = kAlphabet[value % 85];
@@ -97,7 +98,7 @@ std::vector<uint8_t> base85::decode(const std::vector<uint8_t> &b85str)
             value = value * 85 + 84;
         }
 
-        uint8_t block[4];
+        uint8_t block[4] = {};
         block[0] = static_cast<uint8_t>((value >> 24) & 0xFF);
         block[1] = static_cast<uint8_t>((value >> 16) & 0xFF);
         block[2] = static_cast<uint8_t>((value >> 8) & 0xFF);

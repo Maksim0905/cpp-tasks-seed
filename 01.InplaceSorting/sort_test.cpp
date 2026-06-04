@@ -34,22 +34,31 @@ TEST(BubbleSort, Single)
 {
     std::vector<int> v = {42};
     bubble_sort(v.begin(), v.end());
-    EXPECT_EQ(v, (std::vector<int>{42}));
+    EXPECT_EQ(v, (std::vector<int> {42}));
 }
 
 TEST(BubbleSort, AlreadySorted)
 {
-    expect_sort_matches_std({1, 2, 3, 4}, [](auto b, auto e) { bubble_sort(b, e); });
+    expect_sort_matches_std({1, 2, 3, 4}, [](auto b, auto e)
+    {
+        bubble_sort(b, e);
+    });
 }
 
 TEST(BubbleSort, Reverse)
 {
-    expect_sort_matches_std({4, 3, 2, 1}, [](auto b, auto e) { bubble_sort(b, e); });
+    expect_sort_matches_std({4, 3, 2, 1}, [](auto b, auto e)
+    {
+        bubble_sort(b, e);
+    });
 }
 
 TEST(BubbleSort, Duplicates)
 {
-    expect_sort_matches_std({3, 1, 4, 1, 5, 9, 2, 6, 5}, [](auto b, auto e) { bubble_sort(b, e); });
+    expect_sort_matches_std({3, 1, 4, 1, 5, 9, 2, 6, 5}, [](auto b, auto e)
+    {
+        bubble_sort(b, e);
+    });
 }
 
 TEST(QuickSort, Empty)
@@ -63,22 +72,31 @@ TEST(QuickSort, Single)
 {
     std::vector<int> v = {7};
     quick_sort(v.begin(), v.end());
-    EXPECT_EQ(v, (std::vector<int>{7}));
+    EXPECT_EQ(v, (std::vector<int> {7}));
 }
 
 TEST(QuickSort, AlreadySorted)
 {
-    expect_sort_matches_std({1, 2, 3, 4, 5}, [](auto b, auto e) { quick_sort(b, e); });
+    expect_sort_matches_std({1, 2, 3, 4, 5}, [](auto b, auto e)
+    {
+        quick_sort(b, e);
+    });
 }
 
 TEST(QuickSort, Reverse)
 {
-    expect_sort_matches_std({9, 8, 7, 6, 5}, [](auto b, auto e) { quick_sort(b, e); });
+    expect_sort_matches_std({9, 8, 7, 6, 5}, [](auto b, auto e)
+    {
+        quick_sort(b, e);
+    });
 }
 
 TEST(QuickSort, Duplicates)
 {
-    expect_sort_matches_std({2, 2, 2, 1, 0, 1}, [](auto b, auto e) { quick_sort(b, e); });
+    expect_sort_matches_std({2, 2, 2, 1, 0, 1}, [](auto b, auto e)
+    {
+        quick_sort(b, e);
+    });
 }
 
 TEST(SortingIntegration, RandomDataVariousSizesBubble)
@@ -92,7 +110,10 @@ TEST(SortingIntegration, RandomDataVariousSizesBubble)
         {
             x = static_cast<int>(gen() & 0x7fffffff);
         }
-        expect_sort_matches_std(std::move(data), [](auto b, auto e) { bubble_sort(b, e); });
+        expect_sort_matches_std(std::move(data), [](auto b, auto e)
+        {
+            bubble_sort(b, e);
+        });
     }
 }
 
@@ -107,6 +128,9 @@ TEST(SortingIntegration, RandomDataVariousSizesQuick)
         {
             x = static_cast<int>(gen() & 0x7fffffff);
         }
-        expect_sort_matches_std(std::move(data), [](auto b, auto e) { quick_sort(b, e); });
+        expect_sort_matches_std(std::move(data), [](auto b, auto e)
+        {
+            quick_sort(b, e);
+        });
     }
 }

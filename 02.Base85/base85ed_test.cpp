@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
@@ -11,7 +12,8 @@
 namespace
 {
 
-const std::vector<std::pair<const char *, const char *>> short_cases = {
+const std::vector<std::pair<const char *, const char *>> short_cases =
+{
     {"", ""},
     {"F#", "1"},
     {"F){", "12"},

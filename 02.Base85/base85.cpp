@@ -1,6 +1,7 @@
 #include <cstdint>
 #include <functional>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "base85ed.h"
